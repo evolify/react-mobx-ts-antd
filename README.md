@@ -2,7 +2,7 @@
 
 A simple empty project build with react、react-router、mobx、antd in typescript.
 
-[Demo]:http://evolify.oschina.io/demo/react-mobx-ts/#/
+[Demo](http://evolify.oschina.io/demo/react-mobx-ts/#/)
 
 ### usage:
 
