@@ -1,0 +1,38 @@
+{
+  "name": "react-mobx-ts-antd",
+  "version": "0.1.0",
+  "dependencies": {
+    "@types/jest": "^20.0.7",
+    "@types/node": "^8.0.24",
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.3",
+    "@types/react-router-dom": "^4.0.7",
+    "antd": "^2.13.1",
+    "css-loader": "0.28.4",
+    "ev-ui": "^0.1.8",
+    "extract-text-webpack-plugin": "2.1.2",
+    "file-loader": "0.11.2",
+    "html-webpack-plugin": "2.28.0",
+    "mobx": "^3.2.2",
+    "mobx-react": "^4.2.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2",
+    "style-loader": "0.18.2",
+    "styled-components": "^2.1.2",
+    "ts-loader": "^2.3.7",
+    "typescript": "~2.4.0",
+    "url-loader": "0.5.8",
+    "webpack": "2.6.1",
+    "webpack-dev-server": "2.5.0"
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "^1.0.0",
+    "ts-import-plugin": "^1.2.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.dev.config.js",
+    "build": "set NODE_ENV=production && webpack --config webpack.prod.config.js",
+    "git-push": "git add . && git commit && git push"
+  }
+}
