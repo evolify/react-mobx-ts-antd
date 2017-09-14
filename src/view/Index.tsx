@@ -1,11 +1,11 @@
 import * as React from 'react'
-import {inject} from 'mobx-react'
+import { inject,observer } from 'mobx-react'
 import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { EvUI, ActionTag, Dialog } from 'ev-ui'
 import { Layout, Menu, Icon } from 'antd'
 import styled from 'styled-components'
 
-import User from '../model/user'
+import { IStore, IUser } from '../model'
 
 import IndexView from './index/Index'
 import UserView from './user/User'
@@ -108,10 +108,10 @@ const Root = styled(EvUI) `
         }
     }
 `
-    
+
 interface AppProps {
     name: string
-    user ?:User
+    user?: IUser
 }
 
 type IRoute = {
@@ -123,7 +123,7 @@ type IRoute = {
     subRoutes?: Array<IRoute>
 }
 
-const routes:Array<IRoute> = [
+const routes: Array<IRoute> = [
     {
         path: '/',
         exact: true,
@@ -157,9 +157,10 @@ const routes:Array<IRoute> = [
     }
 ];
 
-@inject(store=>({
-    user:store.user
+@inject((store : IStore) => ({
+    user: store.user
 }))
+@observer
 class App extends React.Component<AppProps, {}> {
 
     state = {
@@ -174,7 +175,7 @@ class App extends React.Component<AppProps, {}> {
             mode: collapsed ? 'vertical' : 'inline',
         });
     }
-    onLogout(){
+    onLogout() {
         Dialog.show(Login)
     }
     componentDidMount() {
@@ -204,12 +205,12 @@ class App extends React.Component<AppProps, {}> {
         return (
             <Router>
                 <Root>
-                    <Layout style={{height:this.state.winHeight}}>
-                        <Sider style={{minHeight:this.state.winHeight}} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse.bind(this)}>
+                    <Layout style={{ height: this.state.winHeight }}>
+                        <Sider style={{ minHeight: this.state.winHeight }} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse.bind(this)}>
                             <div className="logo" >
                                 <img src={require('../res/img/ev.jpg')} alt="" />
                             </div>
-                            <Menu theme="light" mode={this.state.collapsed ?'vertical' :'inline'} defaultSelectedKeys={[this.state.selectedMenuKey + '']}>
+                            <Menu theme="light" mode={this.state.collapsed ? 'vertical' : 'inline'} defaultSelectedKeys={[this.state.selectedMenuKey + '']}>
                                 {
                                     routes.map((route, index) => {
                                         if (route.subRoutes) {
@@ -243,13 +244,13 @@ class App extends React.Component<AppProps, {}> {
                                 <SearchBox />
                                 <div className="placeholder"></div>
                                 <div className="user-info">
-                                    <span className="user">{this.props.user ?this.props.user.userName:''}</span>
+                                    <span className="user">{this.props.user ? this.props.user.userName : ''}</span>
                                 </div>
                                 <ActionTag iconField={<Icon type='logout' />} textField='退出' onClick={this.onLogout.bind(this)} />
                             </Header>
                             <Content className="main-content">
                                 {
-                                    routes.map((route:IRoute, index) => {
+                                    routes.map((route: IRoute, index) => {
                                         if (route.subRoutes) {
                                             return (
                                                 <Switch key={index}>

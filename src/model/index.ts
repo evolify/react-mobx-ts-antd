@@ -1,11 +1,17 @@
-import UserStore from './user'
+import User,{IUser} from './user'
+
+interface IStore {
+    user : IUser
+}
+
 class Store {
 
-    userStore:UserStore
+    userStore:IUser
     name = 'abc'
 
     constructor(){
-        this.userStore=new UserStore()
+        this.userStore=new User()
     }
 }
 export default new Store()
+export {IStore,IUser}
