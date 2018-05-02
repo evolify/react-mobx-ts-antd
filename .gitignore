@@ -62,6 +62,7 @@ typings/
 
 # production
 /build
+/app
 
 # misc
 .DS_Store
