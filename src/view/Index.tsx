@@ -270,7 +270,6 @@ class App extends React.Component<AppProps, {}> {
                                 }
                             </Content>
                             <Footer style={{ textAlign: 'center', padding: "0 0 10px" }}>
-                                Dyoon PLM Client ©2017 Created by dyoon
                             </Footer>
                         </Layout>
                     </Layout>
