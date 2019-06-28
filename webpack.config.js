@@ -5,8 +5,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = () => {
   const prod = process.env.NODE_ENV === 'production'
-  const styleLoader = loaders => [
+  const styleLoader = (loaders=[]) => [
     prod ? MiniCssExtractPlugin.loader : 'style-loader',
+    'css-loader',
     ...loaders
   ]
 
@@ -26,10 +27,15 @@ module.exports = () => {
         use: 'babel-loader'
       }, {
         test: /\.css$/,
-        use: styleLoader(['css-loader'])
+        use: styleLoader()
       }, {
         test: /\.scss$/,
-        use: styleLoader(['css-loader', 'sass-loader'])
+        use: styleLoader([{
+          loader: "sass-loader",
+          options: {
+            implementation: require("sass")
+          }
+        }])
       }, {
         test: /\.(jpe?g|png|gif|bmp|svg)$/,
         use: {
@@ -60,7 +66,8 @@ module.exports = () => {
       useLocalIp: true,
       open: 'Google Chrome',
       hot: true,
-      publicPath: ''
+      publicPath: '/',
+      historyApiFallback: true
     },
     plugins: [
       new HtmlWebpackPlugin({

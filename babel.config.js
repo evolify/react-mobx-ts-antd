@@ -7,6 +7,6 @@ module.exports = {
   plugins: [
     ['@babel/proposal-decorators', { legacy: true }],
     ['@babel/proposal-class-properties', { loose: true }],
-    ["import", { libraryName: "antd", style: 'css'}, "ant"],
+    ["import", { libraryName: "antd", style: 'css'}],
   ]
 }

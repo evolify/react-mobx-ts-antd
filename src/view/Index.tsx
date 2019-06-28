@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { inject,observer } from 'mobx-react'
 import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { EvUI, ActionTag, Dialog } from 'ev-ui'
 import { Layout, Menu, Icon } from 'antd'
 import styled from 'styled-components'
 
@@ -14,12 +13,12 @@ import CategoryView from './category/Category'
 import OrderView from './order/Order'
 
 import SearchBox from './public/SearchBox'
-import Login from './public/Login'
+// import Login from './public/Login'
 const { Header, Footer, Sider, Content } = Layout
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
 
-const Root = styled(EvUI) `
+const Root = styled.div `
     .ant-layout{
         .ant-layout-sider{
             background:#fff;
@@ -176,7 +175,7 @@ class App extends React.Component<AppProps, {}> {
         });
     }
     onLogout() {
-        Dialog.show(Login)
+        // Dialog.show(Login)
     }
     componentDidMount() {
         this.activeMenu()
@@ -246,7 +245,7 @@ class App extends React.Component<AppProps, {}> {
                                 <div className="user-info">
                                     <span className="user">{this.props.user ? this.props.user.userName : ''}</span>
                                 </div>
-                                <ActionTag iconField={<Icon type='logout' />} textField='退出' onClick={this.onLogout.bind(this)} />
+                                {/* <ActionTag iconField={<Icon type='logout' />} textField='退出' onClick={this.onLogout.bind(this)} /> */}
                             </Header>
                             <Content className="main-content">
                                 {
